@@ -1,30 +1,38 @@
-\documentclass[10pt]{beamer}
-\usepackage[orientation = portrait, size = a0, scale = 1.25]{beamerposter}
+\documentclass[12pt]{beamer}
+\usepackage[orientation = portrait, size = custom, scale = 1.25, width=36in, height=48in]{beamerposter}
 \usepackage[utf8]{inputenc}
-\usepackage[spanish]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{setspace}
 \usepackage{xcolor}
+\usepackage[useregional]{datetime2}
 \usepackage{multicol}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tikz}
+\documentclass[tikz,margin=0.5cm]{standalone}
+\setbeamertemplate{caption}[numbered]
+\usepackage[backend=biber, sorting=none]{biblatex}
+\addbibresource{ref.bib}
+\usepackage{filecontents}
+\usepackage{svg}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{gensymb}
+\usepackage{float}
 \setlength{\columnsep}{80pt}
 \usepackage{lipsum}
 \usepackage{ragged2e}
+
 \definecolor{azul}{rgb}{0.17, 0.40, 0.69}
-\geometry{left = 5cm, right = 5cm, top = 5cm, bottom = 5cm}
-\author{Manuel Merino\inst{1} \& Aprendiendo \LaTeX\inst{2}}
+\geometry{left = 2cm, right = 2cm, top = 2cm, bottom = 2cm}
+\author{John Doe}
 \institute{
-	Universidad Nacional Mayor de San Marcos\\
-	Facultad de Ciencias Matemáticas\\
-	Escuela Profesional de Computación Científica\\ \vspace{5mm}
-	\inst{2}
-	Universidad Nacional Mayor de San Marcos\\
-	Facultad de Ciencias Matemáticas\\
-	Escuela Profesional de Estadística\\
-}
-\title{Mi primer Poster aplicado a la Inteligencia Artificial}
+	Prestigious University\\ \vspace{5mm}}
+
+\title{Very Impressive Title}
 
 \newcommand{\hacertitulo}{
 		\begin{table}[h]
@@ -33,7 +41,7 @@
 				\begin{minipage}{0.25\linewidth}
 					\begin{figure}[h]
 						\centering
-						\includegraphics[height=15cm]{logo_sm3.pdf}
+						\includegraphics[height=12cm]{logo_sm1.jpg}
 					\end{figure}
 				\end{minipage} & \begin{minipage}{0.5\linewidth}
 					\begin{center}
@@ -48,7 +56,7 @@
 				\end{minipage} & \begin{minipage}{0.25\linewidth}
 					\begin{figure}[h]
 						\centering
-						\includegraphics[height=5cm]{LOGO_AL.pdf}
+						\includegraphics[height=13cm]{}
 					\end{figure}
 				\end{minipage}
 			\end{tabular}
@@ -58,66 +66,106 @@
 
 \newcommand{\seccion}[1]{
 	\textcolor{azul}{\rule{\linewidth}{0.75mm}}\\
-	\vspace{0.75cm}
+	\vspace{0.25cm}
 	\begin{spacing}{3}
 		\begin{center}
 			{\large \textcolor{azul}{\textbf{#1}}}
 		\end{center}
 	\end{spacing}
 	\textcolor{azul}{\rule{\linewidth}{0.75mm}}\\
-	\vspace{1cm}
+	\vspace{0.25cm}
 }
 
 \begin{document}
 	
-	\hacertitulo
+	\hacertitulo{}
 	
 	
 	\vspace{3.5cm}
 	
 	\justifying
 	
-	\begin{multicols}{3}
-		\seccion{Introdución}
-		\lipsum[3] 
-		\vspace{2cm}
-		\begin{figure}
-			\centering
-			\includegraphics[scale=0.35]{logo_sm3.pdf}
-		\end{figure}
-		\vspace{2cm}
-		\lipsum[3]
-		
-		\seccion{Análisis Funcional}
-		\lipsum[7]
-		\vspace{2cm}
-		\begin{figure}
-			\centering
-			\includegraphics[scale=3.1]{LOGO_AL.pdf}
-		\end{figure}
-		
-		\seccion{Teoría de la medida}
-		\lipsum[1] \lipsum[7] \lipsum[7]
-		\vspace{2cm}
-		\begin{figure}
-			\centering
-			\includegraphics[scale=3.1]{LOGO_AL.pdf}
-		\end{figure}
-	    \vspace{2cm}
-	    \seccion{Probabilidades}
-		\lipsum[7] \lipsum[7]
-	    
-		\seccion{Experimentos}
-		\lipsum[2]
-		
-		\seccion{Referencias}
-		\lipsum[7]
+	\begin{multicols}{2}
+ 
+	\seccion{Introduction}
+    \lipsum[1]
+	\seccion{Background}
+ \vspace{0.5cm}
+    \lipsum[2]
+        \seccion{Experiment}
+        \lipsum[3]
+        
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+   \newdimen\R
+   \R=3cm
+   \draw (0:\R) \foreach \x in {30,60,90,120,...,360} {  -- (\x:\R) };
+   \foreach \x/\l/\p in
+     {
+     30/{$D$}/above,
+     60/{$D^{\flat}$}/above,
+     90/{$C$}/above,
+      120/{$B$}/above,
+      150/{$B^\flat$}/above,
+      180/{$A$}/left,
+      210/{$A^\flat$}/left,
+      240/{$G$}/below,
+      270/{$G^\flat$}/below,
+      300/{$F$}/below,
+      330/{$E$}/right,
+      360/{$E^\flat$}/right
+     }
+     \node[inner sep=1pt,circle,draw,fill,label={\p:\l}] at (\x:\R) {};
+    \end{tikzpicture}
+    \caption{Dodecagon with Vertices labelled with corresponding Notes}
+    \label{fig:musical-D_12}
+\end{figure}
+We can thus similarly represent the \textit{Circle of Fifths} as,
+\begin{equation*}
+    (r^7C)^n = \{C,G,D,A,E,B,G{^\flat},D{^\flat},A{^\flat},E{^\flat},B{^\flat},F\}.
+\end{equation*}
+	    \seccion{Musical Example}
+\begin{figure}[H]
+  \centering
+    \includegraphics[scale=0.9]{HCB_orig.png}
+\caption{First Two Measures of Hot Cross Buns}
+    \label{fig:hot_cross_mes2}
+\end{figure}
+
+Here we take a look at the first two measures of the song \texit{Hot Cross Buns}. Let $H_{HCB}=\{B,A,G\}$ be the subset of $P_{12}$ which is the musical score for \textit{Hot Cross Buns} in $C$-major.
+Then by the group action of $\mathbb{Z}_{12}$, for $h\in H_{HCB}$ and $z\in \Z_{12}$, we may musically transpose the score. Suppose $z = 7$, then for the pitch h = G in $H_{HCB}$, we see that
+\begin{equation*}
+\begin{split}
+         7 + G &= \psi^{-1}((7 + \psi(G)) \bmod{12})\\
+               &= \psi^{-1}((7 + 7) \bmod{12})\\
+               &= D
+\end{split}
+\end{equation*}
+so 7 + G = D under the $\mathbb{Z}_{12}$ group action, and so $7 + A = E$ and $7 +  = G{^\flat}$ similarly. Then we see the key has been musically transposed by a factor of 7, resulting in the following adjustment.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[scale=3]{Z12transpose.JPG}
+\caption{First Two Measures of Hot Cross Buns Musically Transposed to $G$-Major}
+    \label{fig:hot_cross_mes2}
+\end{figure}
+
+Here we see that Hot Cross Buns has been musically transposed from the $C$-major to the $G$-major key.
+
+Similarly, we can also achieve the musical transposition in Figure 4 of Hot Cross Buns by applying the group action of $D_{12}$ through the rotation $r^7$.
+
+
+		\seccion{References}
+		\printbibliography
 	\end{multicols}
+	\vspace{1cm}
 	\noindent
 	\textcolor{azul}{\rule{\linewidth}{0.75mm}}\\
 	\vspace{1cm}
 	\begin{center}
-		{\Large \textcolor{azul}{\textbf{Conferencia Internacional de Matemáticas - \insertdate}}}
+		{\Large \textcolor{azul}{\textbf{Conference Name - \monthdayyeardate\today}}}
 	\end{center}
 	
 
