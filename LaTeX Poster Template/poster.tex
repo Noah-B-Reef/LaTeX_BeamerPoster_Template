@@ -1,0 +1,167 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Setup Document
+\documentclass[12pt]{beamer}
+\usepackage[orientation = portrait, size = custom, scale = 1.25, width=36in, height=48in]{beamerposter}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage[useregional]{datetime2}
+\usepackage{multicol}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{tikz}
+\setbeamertemplate{caption}[numbered]
+\usepackage[backend=biber, sorting=none, style=numeric]{biblatex}
+\addbibresource{references.bib}
+\usepackage{filecontents}
+\usepackage{svg}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{gensymb}
+\usepackage{float}
+\setlength{\columnsep}{80pt}
+\usepackage{lipsum}
+\usepackage{ragged2e}
+
+
+\definecolor{azul}{rgb}{0.17, 0.40, 0.69}
+\geometry{left = 2cm, right = 2cm, top = 2cm, bottom = 2cm}
+\author{John Doe}
+\institute{
+	Prestigious University\\ \vspace{5mm}}
+
+\title{Very Impressive Title}
+
+% Define New Commands
+\newcommand{\heading}{
+		\begin{table}[h]
+			\centering
+			\begin{tabular}{ccc}
+				\begin{minipage}{0.25\linewidth}
+    
+                    % Left-Most Figure
+					\begin{figure}[h]
+						\centering
+						\includegraphics[height=12cm]{LaTeX Poster Template/logo_sm3.pdf}
+					\end{figure}
+     
+				\end{minipage} & \begin{minipage}{0.5\linewidth}
+
+                    % Make Title and Augthors
+					\begin{center}
+						\begin{spacing}{5}
+							{\huge \textcolor{azul}{\textbf{\inserttitle}}}\\
+						\end{spacing}
+						\vspace{2cm}
+						{\LARGE \insertauthor}\\
+						\vspace{2cm}
+						{\Large \textit{\insertinstitute}}
+					\end{center}
+     
+				\end{minipage} & \begin{minipage}{0.25\linewidth}
+
+                    % Right-Most Logo
+					\begin{figure}[h]
+						\centering
+						\includegraphics[height=13cm]{LaTeX Poster Template/logo_sm1.pdf}
+					\end{figure}
+				\end{minipage}
+			\end{tabular}
+		\end{table}
+}
+
+
+\newcommand{\Section}[1]{
+	\textcolor{azul}{\rule{\linewidth}{0.75mm}}\\
+	\vspace{0.25cm}
+	\begin{spacing}{3}
+		\begin{center}
+			{\large \textcolor{azul}{\textbf{#1}}}
+		\end{center}
+	\end{spacing}
+	\textcolor{azul}{\rule{\linewidth}{0.75mm}}\\
+	\vspace{0.25cm}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Start Document
+\begin{document}
+	
+	\heading{}
+
+    % Gives Space from Title to Body
+	\vspace{3.5cm}
+	\justifying
+	\begin{multicols}{2}
+
+    % Introduction
+	\Section{Introduction}
+    \lipsum[1] \parencite{Ctan}
+
+    % Background
+	\Section{Background}
+    \vspace{0.5cm}
+    \lipsum[2]
+
+    %Experiment
+    \Section{Experiment}
+    \lipsum[3]
+        
+    % Figure 1
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}
+       \newdimen\R
+       \R=3cm
+       \draw (0:\R) \foreach \x in {30,60,90,120,...,360} {  -- (\x:\R) };
+       \foreach \x/\l/\p in
+         {
+         30/{$D$}/above,
+         60/{$D^{\flat}$}/above,
+         90/{$C$}/above,
+          120/{$B$}/above,
+          150/{$B^\flat$}/above,
+          180/{$A$}/left,
+          210/{$A^\flat$}/left,
+          240/{$G$}/below,
+          270/{$G^\flat$}/below,
+          300/{$F$}/below,
+          330/{$E$}/right,
+          360/{$E^\flat$}/right
+         }
+         \node[inner sep=1pt,circle,draw,fill,label={\p:\l}] at (\x:\R) {};
+        \end{tikzpicture}
+        \caption{Dodecagon with Vertices labelled with corresponding Notes}
+        \label{fig:musical-D_12}
+    \end{figure}
+    \lipsum[4]
+
+    % Results
+    \Section{Results}
+    \lipsum[5]
+
+    % References
+	\Section{References}
+	\printbibliography
+	\end{multicols}
+
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    % Bottom of Page
+	\vspace{1cm}
+	\noindent
+	\textcolor{azul}{\rule{\linewidth}{0.75mm}}\\
+	\vspace{1cm}
+	\begin{center}
+		{\Large \textcolor{azul}{\textbf{Conference Name - \monthdayyeardate\today}}}
+	\end{center}
+	
+% END
+\end{document}
